@@ -3,8 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wordpress
-  labels:
-    app: wordpress
 spec:
   replicas: 1
   selector:
@@ -20,7 +18,7 @@ spec:
           name: wordpress
           env:
           - name: WORDPRESS_DB_HOST
-            value: mysql:3306
+            value: mysql.topse.private:3306
           - name: WORDPRESS_DB_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -29,3 +27,9 @@ spec:
           ports:
             - containerPort: 80
               name: wordpress
+          readinessProbe:
+                  httpGet:
+                          path: /readme.html
+                          port: 80
+                  initialDelaySeconds: 5
+                  periodSeconds: 10
