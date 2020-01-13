@@ -29,3 +29,11 @@ spec:
           ports:
             - containerPort: 80
               name: wordpress
+      volumeMounts:
+        - mountPath: /data
+          name: mypvc
+  volumes:
+    - name: mypvc
+      persistentVolumeClaim:
+        claimName: fileserver-claim
+        readOnly: false
