@@ -9,5 +9,5 @@ spec:
   - ReadWriteMany
   nfs:
     path: /vol1
-    server: 10.241.179.194
+    server: nfs.topse.private
 
