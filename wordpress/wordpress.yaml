@@ -34,8 +34,12 @@ spec:
                   initialDelaySeconds: 5
                   periodSeconds: 10
           volumeMounts:
-            - mountPath: /data
+            - mountPath: /var/www/html/wp-content/uploads
               name: mypvc
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "chown -R www-data:www-data /var/www/html/wp-content/uploads"]
       volumes:
         - name: mypvc
           persistentVolumeClaim:
