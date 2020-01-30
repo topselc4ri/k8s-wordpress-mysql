@@ -20,10 +20,7 @@ spec:
           - name: WORDPRESS_DB_HOST
             value: mysql.topse.private:3306
           - name: WORDPRESS_DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: mysql
-                key: password
+            value: password
           ports:
             - containerPort: 80
               name: wordpress
